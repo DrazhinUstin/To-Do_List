@@ -1,8 +1,21 @@
-$black: rgb(35, 35, 35);
-$white: rgb(255, 255, 255);
+$primary-clr: #f15f79;
+$primary-clr-2: #b24592;
+$black: #232323;
+$white: #ffffff;
+$grey: #d3d3d3;
+$green: #008000;
+$red: #c73333;
+$pink: #e02c59;
+$yellow: #f1db5f;
 $radius: 0.25rem;
+$radius-2: 0.5rem;
 $spacing: 0.1rem;
 $ease-trans: 0.25rem;
+
+%grid-center {
+    display: grid;
+    place-items: center;
+}
 
 %flex-between {
     display: flex;
