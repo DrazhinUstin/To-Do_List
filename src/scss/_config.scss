@@ -1,0 +1,12 @@
+$black: rgb(35, 35, 35);
+$white: rgb(255, 255, 255);
+$radius: 0.25rem;
+$spacing: 0.1rem;
+$ease-trans: 0.25rem;
+
+%flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+}
