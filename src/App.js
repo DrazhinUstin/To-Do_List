@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { FaPlus, FaEdit } from 'react-icons/fa';
 import ShortUniqueId from 'short-unique-id';
+import Time from './Time';
 import List from './List';
 import { getStorageItem, setStorageItem } from './storage';
 
@@ -53,7 +54,11 @@ const App = () => {
 
     return (
         <div className='wrapper'>
-            <h1 className='title'>to-do list</h1>
+            <header>
+                <Time />
+                <span className='amount'>{list.length}</span>
+            </header>
+            <h1>to-do list</h1>
             <form className='form' onSubmit={handlerSubmit}>
                 <input
                     type='text'

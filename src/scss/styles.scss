@@ -12,6 +12,7 @@
 body {
     min-height: 100vh;
     @extend %grid-center;
+    padding: 1rem 0;
     background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
     color: $black;
     font-family: 'Poppins', sans-serif;
@@ -56,13 +57,26 @@ button {
     max-width: 40rem;
     width: 90vw;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem 2rem;
     border-radius: $radius-2;
     background-color: $white;
-}
-
-.title {
-    text-align: center;
+    header {
+        @extend %flex-between;
+        margin-bottom: 1.5rem;
+        color: $pink;
+        .amount {
+            height: 1.5rem;
+            width: 1.5rem;
+            @extend %grid-center;
+            border-radius: $radius;
+            background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
+            color: $white;
+            line-height: 1.6;
+        }
+    }
+    h1 {
+        text-align: center;
+    }
 }
 
 .clear-all-btn {
