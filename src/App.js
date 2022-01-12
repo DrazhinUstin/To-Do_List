@@ -1,13 +1,16 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { FaPlus, FaEdit } from 'react-icons/fa';
 import ShortUniqueId from 'short-unique-id';
 import List from './List';
+import { getStorageItem, setStorageItem } from './storage';
 
 const App = () => {
-    const [list, setList] = useState([]);
+    const [list, setList] = useState(getStorageItem('list'));
     const [text, setText] = useState('');
     const [isEdit, setIsEdit] = useState(false);
     const [editID, setEditID] = useState(null);
+
+    useEffect(() => setStorageItem('list', list), [list]);
 
     const handlerSubmit = (event) => {
         event.preventDefault();
@@ -15,14 +18,14 @@ const App = () => {
         if (isEdit) {
             const editItem = list.find((item) => item.id === editID);
             editItem.text = text;
-            setList(list);
+            setList([...list]);
             cancelEdit();
         } else {
             const id = new ShortUniqueId({ length: 16 })();
             const newItem = { id, text };
             setList([...list, newItem]);
+            setText('');
         }
-        setText('');
     };
 
     const removeItem = (id) => {

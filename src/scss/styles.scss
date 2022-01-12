@@ -31,7 +31,7 @@ li {
 }
 
 p {
-    line-height: 1.5;
+    line-height: 1.25;
 }
 
 input {
@@ -62,7 +62,6 @@ button {
 }
 
 .title {
-    margin-bottom: 2rem;
     text-align: center;
 }
 
@@ -71,11 +70,14 @@ button {
     height: 2rem;
     display: block;
     margin: 0 auto;
-    margin-top: 2rem;
     border: none;
     border-radius: $radius;
     background-color: $pink;
     color: $white;
     text-transform: capitalize;
     letter-spacing: $spacing;
+    transition: $ease-trans;
+    &:hover {
+        background-color: darken($pink, 8%);
+    }
 }

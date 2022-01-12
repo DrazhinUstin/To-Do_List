@@ -10,7 +10,7 @@ $yellow: #f1db5f;
 $radius: 0.25rem;
 $radius-2: 0.5rem;
 $spacing: 0.1rem;
-$ease-trans: 0.25rem;
+$ease-trans: all 0.4s ease;
 
 %grid-center {
     display: grid;
