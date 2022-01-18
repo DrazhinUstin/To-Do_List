@@ -17,6 +17,12 @@ $ease-trans: all 0.4s ease;
     place-items: center;
 }
 
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 %flex-between {
     display: flex;
     justify-content: space-between;

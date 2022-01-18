@@ -1,8 +1,8 @@
-import { React, useState, useEffect } from 'react';
-import { FaPlus, FaEdit } from 'react-icons/fa';
+import { React, useState, useEffect, useRef } from 'react';
+import { FaPlus, FaEdit, FaGithub } from 'react-icons/fa';
 import ShortUniqueId from 'short-unique-id';
-import Time from './Time';
-import List from './List';
+import Time from './components/Time';
+import List from './components/List';
 import { getStorageItem, setStorageItem } from './storage';
 
 const App = () => {
@@ -10,12 +10,16 @@ const App = () => {
     const [text, setText] = useState('');
     const [isEdit, setIsEdit] = useState(false);
     const [editID, setEditID] = useState(null);
+    const inputDOM = useRef(null);
 
     useEffect(() => setStorageItem('list', list), [list]);
 
     const handlerSubmit = (event) => {
         event.preventDefault();
-        if (!text) return;
+        if (!text) {
+            inputDOM.current.focus();
+            return;
+        }
         if (isEdit) {
             const editItem = list.find((item) => item.id === editID);
             editItem.text = text;
@@ -29,14 +33,14 @@ const App = () => {
         }
     };
 
-    const removeItem = (id) => {
-        const newList = list.filter((item) => item.id !== id);
-        setList(newList);
+    const clearList = () => {
+        setList([]);
         if (isEdit) cancelEdit();
     };
 
-    const clearList = () => {
-        setList([]);
+    const removeItem = (id) => {
+        const newList = list.filter((item) => item.id !== id);
+        setList(newList);
         if (isEdit) cancelEdit();
     };
 
@@ -44,6 +48,7 @@ const App = () => {
         setText(text);
         setIsEdit(true);
         setEditID(id);
+        inputDOM.current.focus();
     };
 
     const cancelEdit = () => {
@@ -53,32 +58,40 @@ const App = () => {
     };
 
     return (
-        <div className='wrapper'>
-            <header>
-                <Time />
-                <span className='amount'>{list.length}</span>
-            </header>
-            <h1>to-do list</h1>
-            <form className='form' onSubmit={handlerSubmit}>
-                <input
-                    type='text'
-                    placeholder='Please, add something...'
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
+        <>
+            <div className='wrapper'>
+                <header>
+                    <Time />
+                    <span className='amount'>{list.length}</span>
+                </header>
+                <h1>to-do list</h1>
+                <form className='form' onSubmit={handlerSubmit}>
+                    <input
+                        type='text'
+                        placeholder='Please, add something...'
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        ref={inputDOM}
+                    />
+                    <button type='submit'>{isEdit ? <FaEdit /> : <FaPlus />}</button>
+                </form>
+                <List
+                    list={list}
+                    clearList={clearList}
+                    removeItem={removeItem}
+                    editItem={editItem}
+                    editID={editID}
                 />
-                <button type='submit'>{isEdit ? <FaEdit /> : <FaPlus />}</button>
-            </form>
-            {list.length ? (
-                <>
-                    <List list={list} removeItem={removeItem} editItem={editItem} editID={editID} />
-                    <button className='clear-all-btn' onClick={clearList}>
-                        clear all
-                    </button>
-                </>
-            ) : (
-                <div className='empty-list'>You have no to-does...</div>
-            )}
-        </div>
+            </div>
+            <a
+                href='https://github.com/DrazhinUstin/To-Do_List'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='github-link'
+            >
+                <FaGithub className='icon' /> Watch on github
+            </a>
+        </>
     );
 };
 

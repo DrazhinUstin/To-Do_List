@@ -7,15 +7,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
+    position: relative;
     min-height: 100vh;
     @extend %grid-center;
-    padding: 1rem 0;
+    padding: 3rem 0;
     background: linear-gradient($primary-clr 0%, $primary-clr-2 100%);
     color: $black;
-    font-family: 'Poppins', sans-serif;
     line-height: 1;
 }
 
@@ -27,23 +28,25 @@ h4 {
     letter-spacing: $spacing;
 }
 
-li {
-    list-style-type: none;
-}
-
 p {
     line-height: 1.25;
 }
 
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 input {
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     background-color: $white;
     color: $black;
 }
 
 button {
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     line-height: 1;
     cursor: pointer;
@@ -93,5 +96,25 @@ button {
     transition: $ease-trans;
     &:hover {
         background-color: darken($pink, 8%);
+    }
+}
+
+.github-link {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 15rem;
+    @extend %flex-center;
+    column-gap: 0.5rem;
+    color: $white;
+    font-size: 0.9rem;
+    letter-spacing: $spacing;
+    transition: $ease-trans;
+    &:hover {
+        color: $yellow;
+    }
+    .icon {
+        font-size: 1rem;
     }
 }
